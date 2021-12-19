@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Book } from './interfaces';
 import { BooksList } from './components/BooksList/BooksList';
+import { AddBookForm } from './components/AddBookForm/AddBookForm';
 
 const booksData: Book[] = [
   { id: 'te1314derw', title: 'Of Mice and Men', author: 'John Steinbeck', price: 25 },
@@ -9,13 +10,16 @@ const booksData: Book[] = [
 
 const App: React.FC = () => {
   const [books, setBooks] = useState(booksData);
-
+  const addBook = (book: Book) => {
+    setBooks([...books, book])
+  }
   return (
     <div className="container">
       <header>
         <h1>Books App</h1>
       </header>
       <BooksList books={books} />
+      <AddBookForm addBook={addBook} />
     </div>
   );
 }
